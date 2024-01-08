@@ -1,0 +1,47 @@
+.pokeList{
+    width: 70%;
+    height: 60vh;
+    overflow-y: scroll;
+
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px;
+    
+
+
+    .item{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        cursor: pointer;
+        align-items: center;
+        justify-items: center;
+
+        &:hover{
+            background-color: #f1f1f19d;
+            border-radius: 10px;
+        }
+
+    }
+
+    &::-webkit-scrollbar{
+        width: 8px;
+        position: relative;
+        
+    }
+
+    &::-webkit-scrollbar-track{
+        background: #f1f1f1;
+        margin: 5px;
+        position: absolute;
+        right: 5px;
+        border-radius: 10px;
+
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: #888;
+        border-radius: 10px;
+
+    }
+}
