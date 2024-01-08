@@ -1,0 +1,17 @@
+.pokedetails{
+    width: 35vw;
+    height: 70vh;
+    display: grid;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    &>section{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+
+        &>progress{
+            width: 100%;
+        }
+
+    }
+}

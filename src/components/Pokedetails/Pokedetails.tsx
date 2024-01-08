@@ -3,13 +3,18 @@ import styles from './Pokedetails.module.scss'
 import Image from 'next/image';
 import { usePokemon } from '@/constext/pokemon.constext';
 
-
+interface Stat {
+    stat: {
+      name: string;
+    };
+    base_stat: number;
+    ability: any;
+  }
 export function Pokedetails({ id }: { id: number }) {
     const [pokemon, setPokemon] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     const {pokemon: selectedPokemon}= usePokemon();
-    console.log("selectoo", selectedPokemon)
 
     const requestData = useCallback(async () => {
         if (!selectedPokemon) {
@@ -22,11 +27,7 @@ export function Pokedetails({ id }: { id: number }) {
         setLoading(false);
         setPokemon(data);
 
-        const abilities = data.abilities.map((a: { ability: { name: string; }; }) => a.ability.name)
-        return{
-            abilities
-        }
-
+ console.log(pokemon)
     }, [selectedPokemon]);
 
     
@@ -43,7 +44,7 @@ export function Pokedetails({ id }: { id: number }) {
     //     return (<div>Not found</div>)
     // }
     return (
-        <div className={styles.pokedetails}>
+        <main className={styles.pokedetails}>
             <Image
                 src={pokemon.sprites.other.dream_world.front_default}
                 width={150}
@@ -51,6 +52,26 @@ export function Pokedetails({ id }: { id: number }) {
                 alt={pokemon.name}
             />
             <h2>{pokemon.name}</h2>
-        </div>
+            {pokemon.stats.map((sta: Stat, i: number) => {
+        return (
+         <section key={i}>
+            <h3>{sta.stat.name}</h3>
+            <progress
+              value={sta.base_stat}
+              max={120}
+            />
+              <span>{sta.base_stat}</span>
+         </section>
+        );
+      })}
+
+      {pokemon.abilities.map((ability: Stat, i:number)=>{
+        return(
+            <div>
+                <h3>{ability.ability.name} </h3>
+            </div>
+        )
+      })}
+        </main>
     )
 }

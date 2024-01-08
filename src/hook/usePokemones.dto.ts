@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-const BASE_URl = "https://pokeapi.co/api/v2/pokemon/";
+const BASE_URl = "https://pokeapi.co/api/v2/pokemon";
 
 export default function usePokemones() {
 
